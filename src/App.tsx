@@ -1,13 +1,33 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { useState } from 'react';
+import { TodoListItem } from './components/TodoListItem';
 
-function App() {
+const initialTodos: Array<Todo> = [
+  { text: 'Walk the dog', complete: true },
+  { text: 'write app and complete', complete: false },
+];
+
+const App: React.FC = () => {
+  const [todos, setTodos] = useState(initialTodos);
+
+  const toggleTodo: ToggleTodo = (selectedTodo) => {
+    const newTodos = todos.map((todo) => {
+      if (todo === selectedTodo) {
+        return {
+          ...todo,
+          complete: !todo.complete,
+        };
+      }
+      return todo;
+    });
+    setTodos(newTodos);
+  };
+
   return (
-    <div className="App">
-      <h1>oi</h1>
-    </div>
+    <React.Fragment>
+      <TodoListItem todo={todos[0]} toggleTodo={toggleTodo} />
+      <TodoListItem todo={todos[1]} toggleTodo={toggleTodo} />
+    </React.Fragment>
   );
-}
+};
 
 export default App;
