@@ -40,7 +40,9 @@ export const TodoList: React.FC<TodoListProps> = ({
     <ul>
       <div className="flex mb-4 flex-col w-full border border-gray-400 shadow-lg overflow-hidden m-auto pb-4">
         <div className="justify-around flex-row	flex-col items-center flex">
-          <h1 className="underline text-lg mt-2 ml-3">To do list</h1>
+          <h1 className=" font-montserrat underline  mt-2 ml-3">
+            To do list
+          </h1>
           {checkboxesToDisplay.map((todo) => {
             return (
               <div className="container max-w-full mt-6 text-base font-sans">

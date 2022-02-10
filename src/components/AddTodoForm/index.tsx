@@ -33,7 +33,7 @@ export const AddTodoForm: React.FC<addTodoFormProps> = ({ addTodo, todos }) => {
       <FilterTodoForm todos={todos} />
       <button
         type="submit"
-        className="bg-transparent hover:bg-blue-300 mt-4 text-purple-700 font-semibold hover:text-white py-2 px-4 border border-purple-500 hover:border-transparent rounded"
+        className="bg-transparent hover:bg-blue-300 mt-4 text-purple-700 hover:text-white py-2 px-4 border border-purple-500 hover:border-transparent rounded"
         onClick={handleSubmit}
       >
         Add Todo
