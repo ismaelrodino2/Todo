@@ -1,6 +1,5 @@
 import { AddTodoForm } from './components/AddTodoForm';
 import { TodoList } from './components/TodoList';
-import { useTodos } from './Store/todos';
 
 const App: React.FC = () => {
 

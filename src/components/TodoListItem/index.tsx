@@ -1,20 +1,30 @@
+import { useTodos } from '../../Store/todos';
+
 interface TodoListItemProps {
   todo: Todo;
-  toggleTodo: ToggleTodo;
-  setTodos: (value: Array<Todo>) => void;
-  todos: Array<Todo>;
 }
 
-export const TodoListItem: React.FC<TodoListItemProps> = ({
-  todo,
-  toggleTodo,
-  todos,
-  setTodos,
-}) => {
+export const TodoListItem: React.FC<TodoListItemProps> = ({ todo }) => {
+  const setTodos = useTodos((state) => state.setTodos);
+  const todos = useTodos((state) => state.todos);
+
   function deleteTodo(id: number) {
     const updatedTodos = [...todos].filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
   }
+  const toggleTodo: ToggleTodo = (selectedTodo) => {
+    const newTodos = todos.map((todo: Todo) => {
+      if (todo === selectedTodo) {
+        return {
+          ...todo,
+          complete: !todo.complete,
+        };
+      }
+      return todo;
+    });
+    setTodos(newTodos);
+  };
+  console.log(todo);
 
   return (
     <div className="flex justify-center">
@@ -36,6 +46,7 @@ export const TodoListItem: React.FC<TodoListItemProps> = ({
           <button
             className="bg-pink-400 ml-1 hover:bg-pink-500 text-white font-bold py-1 px-3 rounded-full"
             onClick={() => deleteTodo(todo.id)}
+            data-testid="delete-btn"
           >
             Delete
           </button>
