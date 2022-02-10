@@ -3,27 +3,12 @@ import { TodoList } from './components/TodoList';
 import { useTodos } from './Store/todos';
 
 const App: React.FC = () => {
-  const setTodos = useTodos((state) => state.setTodos);
-  const todos = useTodos((state) => state.todos);
-
-  const toggleTodo: ToggleTodo = (selectedTodo) => {
-    const newTodos = todos.map((todo:Todo) => {
-      if (todo === selectedTodo) {
-        return {
-          ...todo,
-          complete: !todo.complete,
-        };
-      }
-      return todo;
-    });
-    setTodos(newTodos);
-  };
 
   return (
     <div className="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400">
       <div className="container mx-auto px-4 max-w-xs flex-col	h-screen flex justify-center">
         <div className='bg-white px-4 py-4 rounded'>
-          <TodoList toggleTodo={toggleTodo} />
+          <TodoList  />
           <AddTodoForm />
         </div>
       </div>
