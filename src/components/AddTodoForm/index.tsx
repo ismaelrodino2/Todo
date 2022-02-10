@@ -2,17 +2,22 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { useTodos } from '../../Store/todos';
 import { FilterTodoForm } from '../FilterTodoForm';
 
-interface addTodoFormProps {
-  addTodo: AddTodo;
-}
-
-export const AddTodoForm: React.FC<addTodoFormProps> = ({ addTodo }) => {
+export const AddTodoForm: React.FC = () => {
   const [newTodo, setNewTodo] = useState('');
 
   const todos = useTodos((state) => state.todos);
+  const setTodos = useTodos((state) => state.setTodos);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewTodo(e.target.value);
+  };
+
+  const addTodo: AddTodo = (newTodo) => {
+    newTodo.trim() !== '' &&
+      setTodos([
+        ...todos,
+        { text: newTodo, complete: false, id: new Date().getTime() },
+      ]);
   };
 
   const handleSubmit = (e: FormEvent<HTMLButtonElement>) => {
