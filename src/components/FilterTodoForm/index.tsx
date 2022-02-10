@@ -11,6 +11,7 @@ export const FilterTodoForm: React.FC<FilterTodoFormProps> = () => {
 
   return (
     <div className='inline-block relative w-64'>
+      <h1>Filter</h1>
       <select
         value={value}
         onChange={(e) => changeValue(e.target.value)}
@@ -20,7 +21,7 @@ export const FilterTodoForm: React.FC<FilterTodoFormProps> = () => {
         <option value={1}>Unmarked todos</option>
         <option value={2}>All todos</option>
       </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 top-5 text-gray-700">
         <svg
           className="fill-current h-4 w-4"
           xmlns="http://www.w3.org/2000/svg"

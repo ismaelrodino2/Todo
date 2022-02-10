@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useFilterValue } from '../../Store/filter-value';
+import { useTodos } from '../../Store/todos';
 import { TodoListItem } from '../TodoListItem';
 
 interface TodoListProps {
-  todos: Array<Todo>;
   toggleTodo: ToggleTodo;
-  setTodos: (value: Array<Todo>) => void;
 }
 
 export const TodoList: React.FC<TodoListProps> = ({
-  todos,
   toggleTodo,
-  setTodos,
 }) => {
   const value = useFilterValue((state) => state.value);
+
+  const setTodos = useTodos((state) => state.setTodos);
+  const todos = useTodos((state) => state.todos);
+
 
   const [checkboxesToDisplay, SetcheckboxesToDisplay] = useState(todos);
 
@@ -31,9 +32,7 @@ export const TodoList: React.FC<TodoListProps> = ({
     if (value === '2') {
       SetcheckboxesToDisplay(todos);
     }
-    console.log(checkboxesToDisplay);
-    console.log(todos);
-    console.log(typeof value);
+
   }, [todos, value]);
 
   return (
