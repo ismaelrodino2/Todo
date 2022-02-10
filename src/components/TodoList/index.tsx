@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useFilterValue } from '../../Store/filter-value';
 import { useTodos } from '../../Store/todos';
+import { useTodosDisplay } from '../../Store/displaytodo';
 import { TodoListItem } from '../TodoListItem';
 
-export const TodoList: React.FC= () => {
+export const TodoList: React.FC = () => {
   const value = useFilterValue((state) => state.value);
 
   const todos = useTodos((state) => state.todos);
 
-
-  const [checkboxesToDisplay, SetcheckboxesToDisplay] = useState(todos);
+  const checkboxesToDisplay = useTodosDisplay((state) => state.todosDisplay);
+  const SetcheckboxesToDisplay = useTodosDisplay(
+    (state) => state.setTodosDisplay,
+  );
 
   useEffect(() => {
     if (value === '0') {
@@ -30,15 +33,14 @@ export const TodoList: React.FC= () => {
   return (
     <ul>
       <div className="flex mb-4 flex-col w-full border border-gray-400 shadow-lg overflow-hidden m-auto pb-4">
-        <div data-testid="list" className="justify-around	flex-col items-center flex">
+        <div className="justify-around	flex-col items-center flex">
           <h1 className=" font-montserrat underline  mt-2 ml-3">To do list</h1>
           {checkboxesToDisplay.map((todo) => {
             return (
-              <div className="container max-w-full mt-6 text-base font-sans">
-                <TodoListItem
-                  key={todo.id}
-                  todo={todo}
-                />
+              <div
+                className="container max-w-full mt-6 text-base font-sans"
+              >
+                <TodoListItem key={todo.id} todo={todo} />
               </div>
             );
           })}

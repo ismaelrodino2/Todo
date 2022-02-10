@@ -18,5 +18,7 @@ describe('Tests for Todo component', () => {
     const listNode = await waitFor(() => getList(newTask));
 
     expect(listNode).toBeDefined()
+    expect(getByTestId).toMatchSnapshot();
+
   });
 });

@@ -1,3 +1,4 @@
+import { useTodosDisplay } from '../../Store/displaytodo';
 import { useTodos } from '../../Store/todos';
 
 interface TodoListItemProps {
@@ -8,9 +9,14 @@ export const TodoListItem: React.FC<TodoListItemProps> = ({ todo }) => {
   const setTodos = useTodos((state) => state.setTodos);
   const todos = useTodos((state) => state.todos);
 
+  const SetcheckboxesToDisplay = useTodosDisplay(
+    (state) => state.setTodosDisplay,
+  );
+
   function deleteTodo(id: number) {
     const updatedTodos = [...todos].filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
+    SetcheckboxesToDisplay(updatedTodos);
   }
   const toggleTodo: ToggleTodo = (selectedTodo) => {
     const newTodos = todos.map((todo: Todo) => {
@@ -24,17 +30,17 @@ export const TodoListItem: React.FC<TodoListItemProps> = ({ todo }) => {
     });
     setTodos(newTodos);
   };
-  console.log(todo);
 
   return (
     <div className="flex justify-center">
       <div>
-        <div className="form-check items-center flex">
+        <div className="form-check items-center flex" >
           <input
             className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
             type="checkbox"
             checked={todo.complete}
             onChange={() => toggleTodo(todo)}
+            data-testid="todo-value"
             value={todo.text}
           />
           <label
