@@ -9,12 +9,12 @@ export const TodoListItem: React.FC<TodoListItemProps> = ({
   todo,
   toggleTodo,
   todos,
-  setTodos
+  setTodos,
 }) => {
   function deleteTodo(id: number) {
     console.log(id);
     const updatedTodos = [...todos].filter((todo) => todo.id !== id);
-    console.log(updatedTodos)
+    console.log(updatedTodos);
     setTodos(updatedTodos);
   }
 

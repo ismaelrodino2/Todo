@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import { AddTodoForm } from './components/AddTodoForm';
+import { FilterTodoForm } from './components/FilterTodoForm';
 import { TodoList } from './components/TodoList';
 
-const initialTodos: Array<Todo> = [
-  { text: 'Walk the dog', complete: true, id: 1231 },
-  { text: 'write app and complete', complete: false, id: 12311 },
-];
+const initialTodos: Array<Todo> = [];
 
 const App: React.FC = () => {
   const [todos, setTodos] = useState(initialTodos);
-
-  console.log(todos);
 
   const toggleTodo: ToggleTodo = (selectedTodo) => {
     const newTodos = todos.map((todo) => {
@@ -37,6 +33,7 @@ const App: React.FC = () => {
     <React.Fragment>
       <TodoList setTodos={setTodos} todos={todos} toggleTodo={toggleTodo} />
       <AddTodoForm addTodo={addTodo} />
+      <FilterTodoForm todos={todos} />
     </React.Fragment>
   );
 };
