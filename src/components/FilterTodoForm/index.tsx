@@ -1,44 +1,34 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React from 'react';
 import { useFilterValue } from '../../Store/filter-value';
 
 interface FilterTodoFormProps {
   todos: Array<Todo>;
 }
 
-export const FilterTodoForm: React.FC<FilterTodoFormProps> = ({ todos }) => {
-  const [newTodo, setNewTodo] = useState('');
-  const [selectProduct, setSelectProduct] = useState('');
-
+export const FilterTodoForm: React.FC<FilterTodoFormProps> = () => {
   const changeValue = useFilterValue((state) => state.changeValue);
   const value = useFilterValue((state) => state.value);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setNewTodo(e.target.value);
-  };
-
-  const ShowChecked = (e: FormEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-  };
-
-  const ShowUnchecked = (e: FormEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-  };
-
-  const ShowAll = (e: FormEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-  };
-
-
   return (
-    <React.Fragment>
+    <div className='inline-block relative w-64'>
       <select
         value={value}
         onChange={(e) => changeValue(e.target.value)}
+        className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
       >
-        <option value={0}>A</option>
-        <option value={1}>B</option>
-        <option value={2}>C</option>
+        <option value={0}>Marked todos</option>
+        <option value={1}>Unmarked todos</option>
+        <option value={2}>All todos</option>
       </select>
-    </React.Fragment>
+      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+        <svg
+          className="fill-current h-4 w-4"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+        </svg>
+      </div>
+    </div>
   );
 };

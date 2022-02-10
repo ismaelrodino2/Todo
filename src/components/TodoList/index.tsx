@@ -3,9 +3,9 @@ import { useFilterValue } from '../../Store/filter-value';
 import { TodoListItem } from '../TodoListItem';
 
 interface TodoListProps {
-  todos: any;
-  toggleTodo: any;
-  setTodos: any;
+  todos: Array<Todo>;
+  toggleTodo: ToggleTodo;
+  setTodos: (value: Array<Todo>) => void;
 }
 
 export const TodoList: React.FC<TodoListProps> = ({
@@ -14,14 +14,13 @@ export const TodoList: React.FC<TodoListProps> = ({
   setTodos,
 }) => {
   const value = useFilterValue((state) => state.value);
-  console.log(value);
 
   const [checkboxesToDisplay, SetcheckboxesToDisplay] = useState(todos);
 
   useEffect(() => {
     if (value === '0') {
       SetcheckboxesToDisplay(
-        todos.filter((todo: { complete: boolean; }) => todo.complete === true),
+        todos.filter((todo: { complete: boolean }) => todo.complete === true),
       );
     }
     if (value === '1') {
@@ -39,12 +38,24 @@ export const TodoList: React.FC<TodoListProps> = ({
 
   return (
     <ul>
-      {checkboxesToDisplay.map((todo:any) => {
-        return (
-          <TodoListItem key={todo.text} todo={todo} toggleTodo={toggleTodo} setTodos={setTodos} todos={todos} />
-        );
-      })}
+      <div className="flex mb-4 flex-col w-full border border-gray-400 shadow-lg overflow-hidden m-auto pb-4">
+        <div className="justify-around flex-row	flex-col items-center flex">
+          <h1 className="underline text-lg mt-2 ml-3">To do list</h1>
+          {checkboxesToDisplay.map((todo) => {
+            return (
+              <div className="container max-w-full mt-6 text-base font-sans">
+                <TodoListItem
+                  key={todo.id}
+                  todo={todo}
+                  toggleTodo={toggleTodo}
+                  setTodos={setTodos}
+                  todos={todos}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </ul>
   );
-
 };
