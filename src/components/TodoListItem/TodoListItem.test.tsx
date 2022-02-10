@@ -29,10 +29,7 @@ describe('Tests for Todo component', () => {
 
     fireEvent.click(btnNode);
 
-    console.log(listNode.innerHTML);
-
     expect(listNode).toBeDefined();
 
-    console.log(listNode.innerHTML);
   });
 });
