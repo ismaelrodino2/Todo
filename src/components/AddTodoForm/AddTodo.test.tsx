@@ -3,7 +3,7 @@ import { TodoList } from '../TodoList';
 
 import { render, waitFor, fireEvent } from '@testing-library/react';
 
-describe('Tests for Todo component', () => {
+describe('Tests for AddTodoForm component', () => {
   it('Should add todo when form has been submited', async () => {
     const { getByTestId } = render(<AddTodoForm />);
     const { getByText: getList } = render(<TodoList />);
@@ -17,8 +17,10 @@ describe('Tests for Todo component', () => {
 
     const listNode = await waitFor(() => getList(newTask));
 
-    expect(listNode).toBeDefined()
-    expect(getByTestId).toMatchSnapshot();
-
+    expect(listNode).toBeDefined();
+  });
+  it('Should match snapshot', () => {
+    const { container } = render(<AddTodoForm />);
+    expect(container).toMatchSnapshot();
   });
 });

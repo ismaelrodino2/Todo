@@ -1,3 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tests for Todo component Should render a todo 1`] = `[Function]`;
+exports[`Tests for TodoList component Should match snapshot 1`] = `
+<div>
+  <div
+    class="flex justify-center"
+  >
+    <div>
+      <div
+        class="form-check items-center flex"
+      >
+        <input
+          class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+          data-testid="todo-value"
+          type="checkbox"
+          value="test"
+        />
+        <label
+          class="form-check-label inline-block text-gray-800"
+          style="text-decoration: none;"
+        >
+          test
+        </label>
+        <button
+          class="bg-pink-400 ml-1 hover:bg-pink-500 text-white font-bold py-1 px-3 rounded-full"
+          data-testid="delete-btn"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Tests for TodoListItem component Should render a todo 1`] = `[Function]`;

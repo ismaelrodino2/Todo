@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 import { TodoList } from '.';
 
-describe('Tests for Todo component', () => {
-  it('Should render a todo', async () => {
-    const { getByText } = render(<TodoList />);
+describe('Tests for TodoList component', () => {
+  it('Should match snapshot', async () => {
+    const { container } = render(<TodoList />);
 
-    expect(getByText).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

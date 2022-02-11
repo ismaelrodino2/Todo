@@ -41,7 +41,7 @@ export const AddTodoForm: React.FC = () => {
           onChange={handleChange}
         />
       </div>
-      <FilterTodoForm todos={todos} />
+      <FilterTodoForm />
       <button
         data-testid="form-btn"
         type="submit"

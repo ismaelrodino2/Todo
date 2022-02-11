@@ -1,11 +1,7 @@
 import React from 'react';
 import { useFilterValue } from '../../Store/filter-value';
 
-interface FilterTodoFormProps {
-  todos: Array<Todo>;
-}
-
-export const FilterTodoForm: React.FC<FilterTodoFormProps> = () => {
+export const FilterTodoForm: React.FC = () => {
   const changeValue = useFilterValue((state) => state.changeValue);
   const value = useFilterValue((state) => state.value);
 

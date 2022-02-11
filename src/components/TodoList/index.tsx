@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useFilterValue } from '../../Store/filter-value';
 import { useTodos } from '../../Store/todos';
 import { useTodosDisplay } from '../../Store/displaytodo';
